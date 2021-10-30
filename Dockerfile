@@ -8,20 +8,14 @@ RUN rm -f /etc/apt/sources.list && \
 	bash -c 'echo -e "deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse\ndeb-src http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse\ndeb http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse\ndeb-src http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse\ndeb http://archive.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse\ndeb-src http://archive.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse\ndeb http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse\ndeb-src http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse\ndeb http://archive.canonical.com/ubuntu focal partner\ndeb-src http://archive.canonical.com/ubuntu focal partner" >/etc/apt/sources.list' && \
 	apt-get update && \
 	apt-get install -y \
-	supervisor \
 	wget \
 	htop \
 	nano \
 	git \
 	curl \
-	net-tools \
-	python3 \
-	python3-pip \
-	python-is-python3 \
 	nginx 
 	
-
-RUN cp nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 CMD sed -i '/ssl_certificate/d' /etc/nginx/nginx.conf\
     && sed -i '/listen 443/d' /etc/nginx/nginx.conf\
