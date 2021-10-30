@@ -7,10 +7,6 @@ RUN rm -f /etc/nginx/sites-enabled/default
 RUN rm -f /var/www/html/index.nginx-debian.html
 RUN apt-get install -y iputils-ping
 
-COPY default /etc/nginx/sites-enabled
-#COPY 22.txt /var/www/html/22.txt
-COPY 33.txt /var/www/html/33.txt
-
 
 COPY default.conf /etc/nginx/conf.d/
 
