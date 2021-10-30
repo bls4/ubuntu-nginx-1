@@ -10,6 +10,6 @@ RUN set -x \
         && rm -f /etc/nginx/conf.d/default.conf
         
 COPY ["nginx.conf", "/etc/nginx/nginx.conf"]  
-PORT=8080
-EXPOSE $PORT
+
+EXPOSE 8080
 CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/nginx.conf && /usr/sbin/nginx -g 'daemon off;'
