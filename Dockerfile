@@ -11,8 +11,7 @@ COPY default /etc/nginx/sites-enabled
 #COPY 22.txt /var/www/html/22.txt
 COPY 33.txt /var/www/html/33.txt
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
-#ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
-#CMD /usr/sbin/nginx -g daemon off
-#ENTRYPOINT /usr/sbin/nginx -g deamon off
 
+COPY default.conf /etc/nginx/conf.d/
+
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && /usr/sbin/nginx -g 'daemon off;'
